@@ -42,12 +42,14 @@ router.get("/blogs/:id", async (req, res) => {
 router.get("/blogs", async (req, res) => {
   const blogs = await db.execute("SELECT * from blog WHERE confirm = 1");
   const categories = await db.execute("SELECT * from category");
+
   try {
     res.render("users/blogs", {
       title: "Tüm Kurslar",
       blogs: blogs[0],
       categories: categories[0],
       selectedCategory: null,
+      
     });
   } catch (err) {
     console.log(err);
